@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}{{ phone.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+  <div class="header">
+    <h5>
+      <a href="{% url 'catalog' %}">Вернуться в каталог</a>
+    </h5>
+    {%for inf in phone %}
+    <h1>{{ inf.name }}</h1>
+  </div>
+
+  <div class="content">
+    <img src="{{ inf.image }}" alt="{{ inf.name }}"/>
+    <div>Стоимость: {{ inf.price }} ₽</div>
+    <div>Дата выпуска: {{ inf.release_date }}</div>
+    <div>LTE: {{ inf.lte_exists|yesno:'есть,нет' }}</div>
+  </div>
+  {% endfor %}
+{% endblock %}
